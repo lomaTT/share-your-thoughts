@@ -1,8 +1,25 @@
 import React from 'react'
+import InputCard from './InputCard'
 
-const Profile = () => {
+const Profile = ({ name, description, data, handleEdit, handleDelete }) => {
   return (
-    <div>Profile</div>
+    <section className='w-full'>
+      <h1 className='head_text text-left'>
+        <span className='blue_gradient'>{name} Profile</span>
+      </h1>
+      <p className='desc text-left'>{description}</p>
+      <div className='mt-10 prompt_layout'>
+        {data.map((post) => (
+          <InputCard
+            key={post._id}
+            post={post}
+            handleEdit={() => handleEdit && handleEdit(post)}
+            handleDelete={() => handleDelete && handleDelete(post)}
+          />
+        ))}
+      </div>
+    </section>
+
   )
 }
 
