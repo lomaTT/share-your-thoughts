@@ -27,6 +27,10 @@ const Feed = () => {
     setSearchText(e.target.value);
   }
 
+  const handleTagClick = (tag) => {
+    setSearchText(tag)
+  }
+
   useEffect(() => {
     const fetchPrompts = async () => {
       const response = await fetch('/api/prompt')
@@ -68,7 +72,7 @@ const Feed = () => {
       {(posts !== []) ? (
         <PromptCardList
           data={posts}
-          handleTagClick={() => {}}
+          handleTagClick={handleTagClick}
         />
       ) : <></>}
       
