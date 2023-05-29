@@ -46,7 +46,7 @@ const Feed = () => {
         });
         const filteredData = searchData.filter( item => item );
         setPosts(filteredData);
-        console.log(filteredData);
+        // console.log(filteredData);
       } else {
         setPosts(data);
       }

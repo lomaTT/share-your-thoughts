@@ -11,20 +11,18 @@ import { Router } from 'next/router';
 const MyProfile = () => {
 
   const router = useRouter();
-
   const { data: session } = useSession();
-
   const [posts, setPosts] = useState([]);
-  
+
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch (`/api/users/${session?.user.id}/posts`);
+      const response = await fetch(`/api/users/${session?.user.id}/posts`);
       const data = await response.json();
 
       setPosts(data);
     }
 
-    console.log(posts);
+    // console.log(posts);
     if (session?.user.id) fetchPosts();
   }, [])
 
@@ -50,7 +48,7 @@ const MyProfile = () => {
   }
 
   return (
-    <Profile 
+    <Profile
       name="My"
       description="Welcome to your profile!"
       data={posts}
