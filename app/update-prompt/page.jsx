@@ -29,7 +29,7 @@ const EditPrompt = () => {
 
             setPost({
                 prompt: data.prompt,
-                tag: data.tag,
+                tag: '#' + data.tag,
             })
         }
         if (promptId) getPromptsDetails();
@@ -45,7 +45,7 @@ const EditPrompt = () => {
 				method: "PATCH",
 				body: JSON.stringify({
 					prompt: post.prompt,
-					tag: post.tag
+					tag: '#' + post.tag
 				})
 			})
 
