@@ -1,7 +1,7 @@
 import React from 'react'
 import '@styles/globals.css'
 import Nav from '@components/Nav'
-import Provider from '@components/provider'
+import Provider from '@components/Provider'
 
 export const metadata = {
     title: "Share your thoughts",
