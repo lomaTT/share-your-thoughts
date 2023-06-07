@@ -12,10 +12,15 @@ export const POST = async (req) => {
             tag
         })
 
-        await newPrompt.save();
-        return new Response(JSON.stringify(newPrompt), {
-            status: 201
-        })
+        if (newPrompt.creator && newPrompt.prompt && newPrompt.tag) {
+            await newPrompt.save();
+            return new Response(JSON.stringify(newPrompt), {
+                status: 201
+            });
+        } else {
+            return new Response("Invalid input!", { status: 500 });
+        }
+
     } catch (error) {
         return new Response("Failed to create a new prompt", { status: 500 })
     }
