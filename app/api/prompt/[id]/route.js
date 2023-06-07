@@ -26,9 +26,14 @@ export const PATCH = async (request, {params}) => {
         existingPrompt.prompt = prompt;
         existingPrompt.tag = tag;
 
-        await existingPrompt.save();
+        // await existingPrompt.save();
 
-        return new Response(JSON.stringify(existingPrompt), {status: 200});
+        if (newPrompt.creator && newPrompt.prompt && newPrompt.tag) {
+            await existingPrompt.save();
+            return new Response(JSON.stringify(existingPrompt), { status: 200 });
+        } else {
+            return new Response("Invalid input!", { status: 500 });
+        }
     } catch (error) {
         return new Response("Failed to update a prompt!", {status: 500});
     }
