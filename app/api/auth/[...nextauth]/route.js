@@ -1,15 +1,17 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from "next-auth/providers/credentials";
 
 import { connectToDB } from "@utils/database";
 import User from "@models/user";
+import { cookies } from "next/dist/client/components/headers";
 
 const handler = NextAuth({
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET
-        })
+        }),
     ],
     callbacks: {
         async session({ session }) {
@@ -41,7 +43,11 @@ const handler = NextAuth({
                 return false;
             }
         } 
-    }
+    },
+    session: {
+        strategy: "jwt",
+    },
+    cookies: cookies
 })
 
 export { handler as GET, handler as POST };
